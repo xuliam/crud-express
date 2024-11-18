@@ -1,4 +1,5 @@
 brew services start mongodb-community@8.0
+brew services stop mongodb-community@8.0
 
 //進入數據庫
 mongosh
@@ -12,3 +13,5 @@ show dbs
  show collections
  //顯示集合的具體數據， 例如users
  db.users.find()
+
+ exit
