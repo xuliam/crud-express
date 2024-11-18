@@ -27,3 +27,14 @@ const userSchema = new Schema({
   第二個參數：架構Schema
   */
   var User = mongoose.model('User', userSchema);
+
+  //4. 有了模型模型構造函數，就可以可以使用這個構造函數對users集合進行crud
+  var admin = new User({
+    username: 'admin',
+    password: '123456',
+    email:'admin@gmail.com'
+  })
+
+  admin.save()
+
+  
