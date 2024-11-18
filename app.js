@@ -12,6 +12,10 @@
 const express = require('express');
 const router = require('./router');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const port = 3000;
+const host = 'localhost';
+
 //實例化express
 const app = express();
 
@@ -35,7 +39,7 @@ app.engine('html', require('express-art-template'))
 //把router掛載到app中
 app.use(router);
 
-app.listen(3000, function(){
+app.listen(port, function(){
     console.log('running 3000...');
 });
 
