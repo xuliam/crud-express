@@ -2,22 +2,28 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //1. 連結數據庫
-mongoose.connect('mongodb://localhost/itcast');
+mongoose.connect('mongodb://localhost/user');
 
 //2. 設計文檔結構
 const userSchema = new Schema({
-    username:{
-        type: String,
-        require: true //必須有
-    },
-    password:{
-        type: String,
-        required: true
-    },
-    email:{
-        type: String
-    }   
-  });
+	name: {
+		type: String,
+		required: true
+	},
+	gender: {
+		type: Number,
+		enum: [0, 1],
+        default: 0
+	},
+	age: {
+		type: Number
+		
+	},
+    hobbies: {
+		type: String
+	}
+    
+});
 
   //3. 將文檔結構發佈為模型
   /* 
@@ -29,13 +35,14 @@ const userSchema = new Schema({
   var User = mongoose.model('User', userSchema);
 
   //4. 有了模型模型構造函數，就可以可以使用這個構造函數對users集合進行crud
-  var admin = new User({
-    username: 'admin',
-    password: '123456',
-    email:'admin@gmail.com'
+  var user = new User({
+    name: "王姐建",
+    gender: 0,
+    age: 48,
+    hobbies: "吃饭和睡觉"
   })
 
-  admin.save()
+   user.save().then(()=>console.log(user));
 
 
 //   async function run() {

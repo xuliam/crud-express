@@ -5,7 +5,7 @@
     根據不同的請求方法/請求路徑設置不同的函數；
 
 */
-const User = require('./user.js');
+const User = require('./user');
 //加載express
 const express = require('express');
 //1. 創建一個路由容器
@@ -20,33 +20,15 @@ let users =[
 
 ]
 
-router.get('/', function(req, res){
-    // fs.readFile('./db.json', 'utf8', function(err, data){
-    //     if(err){
-    //         return res.status(500).send('Server error.');
-    //     }
-    //     res.render('index.html',{
-    //         fruits: [
-    //             '蘋果',
-    //             '香蕉'
-    //         ],
-    //         // 從文件中讀取的數據一定是字符串，所以這裏要手動轉成對象；
-    //         students: JSON.parse(data).students
 
-    //     });
-    // });
-    User.findAll(function(err, data){
-        if(err){
-            return res.status(500).send('Server error.');
-        }res.render('index.html',{
-            fruits: [
-                 '蘋果',
-                 '香蕉'
-             ],
-            //接受的數據把它轉變成對象；
-            students:data
-        })
-    })
+//显示全部学生
+router.get('/', async(req, res)=>{
+   
+    data = await User.find({});
+    res.render('index.html',{
+        students:data
+    });
+
 });
 
 //請求所有用戶
@@ -66,7 +48,7 @@ router.get('/users', (req, res)=>{
 //       }    
 // });
 
-//請求新增用戶表單 get方法
+//請求新增用戶表單 get方法 ；渲染添加页面
 router.get('/users/new', (req, res)=>{
     res.render('new.html');
 });

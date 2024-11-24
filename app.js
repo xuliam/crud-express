@@ -39,6 +39,8 @@ app.engine('html', require('express-art-template'))
 //把router掛載到app中
 app.use(router);
 
+
+
 app.listen(port, function(){
     console.log('running 3000...');
 });
